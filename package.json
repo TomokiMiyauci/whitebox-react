@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@whitebox/core": "npm:@jsr/whitebox__core@^0.1.0",
+    "react": "^19",
+    "react-dom": "^19"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19"
+  }
+}
