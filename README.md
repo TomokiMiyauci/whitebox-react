@@ -5,7 +5,7 @@ React renderer for [whitebox](https://github.com/TomokiMiyauci/whitebox).
 ## Install
 
 ```bash
-jsr add @whitebox/react
+npx jsr add @whitebox/react
 ```
 
 ## Usage
