@@ -1,0 +1,5 @@
+{
+  "name": "@whitebox/react",
+  "exports": "./src/mod.ts",
+  "version": "0.1.0"
+}
