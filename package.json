@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@whitebox/core": "npm:@jsr/whitebox__core@^0.1.0",
+    "@whitebox/core": "jsr:@whitebox/core@^0.1.0",
     "react": "^19",
     "react-dom": "^19"
   },

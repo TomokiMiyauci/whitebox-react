@@ -1,9 +1,9 @@
 {
   "name": "Bun",
-  "image": "oven/bun",
+  "image": "denoland/deno",
   "customizations": {
     "vscode": {
-      "extensions": ["oven.bun-vscode", "esbenp.prettier-vscode"]
+      "extensions": ["denoland.vscode-deno"]
     }
   },
   "features": {
