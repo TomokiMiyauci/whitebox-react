@@ -1,6 +1,18 @@
-import { createRoot } from "react-dom/client";
+import { createRoot, Root } from "react-dom/client";
 import type { ReactNode } from "react";
-import { Effect } from "@whitebox/core";
+import { Effect, Scheduler } from "./effect.ts";
+import { MicrotaskScheduler } from "./schedular.ts";
+
+/**
+ * Lifecycle callbacks supported by a custom element.
+ */
+export interface CustomElementCallbacks {
+  /** Invoked each time the custom element is connected to the document. */
+  connectedCallback?(): void;
+
+  /** Invoked each time the custom element is disconnected from the document. */
+  disconnectedCallback?(): void;
+}
 
 /**
  * Renders a custom element's reactive instance with React.
@@ -8,26 +20,44 @@ import { Effect } from "@whitebox/core";
  * @param fn Creates the React node from the custom element instance.
  * @returns A class decorator that rerenders when reactive dependencies change.
  */
-export function template<T extends new (...args: any) => HTMLElement>(
+export function template<
+  // deno-lint-ignore no-explicit-any
+  T extends new (...args: any[]) => HTMLElement & CustomElementCallbacks,
+>(
   fn: (props: InstanceType<T>) => ReactNode,
 ): (constructor: T) => T {
   return (constructor) => {
     return class extends constructor {
-      constructor(...args: any) {
-        super(...args);
+      #schedular: Scheduler = new MicrotaskScheduler();
+      #effect?: Effect;
+      #root?: Root;
+
+      override connectedCallback(): void {
+        super.connectedCallback?.();
+
+        if (this.#effect) return;
 
         const host = this.shadowRoot ?? this;
-        const root = createRoot(host);
+        const root = this.#root ?? createRoot(host);
 
-        const bound = (): void => {
+        this.#root = root;
+
+        const action = (): void => {
           const node = fn(this as InstanceType<T>);
 
           root.render(node);
         };
 
-        const effect = new Effect(bound);
+        const effect = Effect.start(action, this.#schedular);
 
-        effect.run();
+        this.#effect = effect;
+      }
+
+      override disconnectedCallback(): void {
+        this.#effect?.stop();
+        this.#effect = undefined;
+
+        super.disconnectedCallback?.();
       }
     };
   };
