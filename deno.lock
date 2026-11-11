@@ -1,16 +1,19 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@jsr/whitebox__core@0.1": "0.1.0",
+    "npm:@jsr/whitebox__core@0.4": "0.4.1",
     "npm:@types/react-dom@19": "19.3.0_@types+react@19.3.0",
     "npm:@types/react@19": "19.3.0",
     "npm:react-dom@19": "19.3.1_react@19.3.1",
     "npm:react@19": "19.3.1"
   },
   "npm": {
-    "@jsr/whitebox__core@0.1.0": {
-      "integrity": "sha512-UOyNVb9BcQvdNVuynBDxuB6y5EFiBUykgf36YoaU6NfYknhBz3GnJm4mwsQa1yfK7JaaQS+7tWsn+SQgbHkTgA==",
-      "tarball": "https://npm.jsr.io/~/11/@jsr/whitebox__core/0.1.0.tgz"
+    "@jsr/whitebox__core@0.4.1": {
+      "integrity": "sha512-jgvrR6AV6WOPuy2yNCWeCFlBR7Ttu1YGa3cuFHSvCBFEgG6GM8tPJCWaQB5a8n2AqgGwUeH3w7gtOd0i+SLl5w==",
+      "dependencies": [
+        "signal-polyfill"
+      ],
+      "tarball": "https://npm.jsr.io/~/11/@jsr/whitebox__core/0.4.1.tgz"
     },
     "@types/react-dom@19.3.0_@types+react@19.3.0": {
       "integrity": "sha512-ZI7bU42mZXXKHn/qNLEw2IrbiINU7X5+vfgdixBHkCNpYWXjKgfQ/P+uyGb5CjOLB9UcnTeg3rylQtV2hym44Q==",
@@ -39,12 +42,15 @@
     },
     "scheduler@0.28.0": {
       "integrity": "sha512-juorfCmIkIw8tT+p5BXSm6PJjQF/ycEYmKyzURCIt/RaZIhL+PulbQ9Yu2z1HdOJDdqDTlxA1+xKBmHXJsczAw=="
+    },
+    "signal-polyfill@0.2.2": {
+      "integrity": "sha512-p63Y4Er5/eMQ9RHg0M0Y64NlsQKpiu6MDdhBXpyywRuWiPywhJTpKJ1iB5K2hJEbFZ0BnDS7ZkJ+0AfTuL37Rg=="
     }
   },
   "workspace": {
     "packageJson": {
       "dependencies": [
-        "npm:@jsr/whitebox__core@0.1",
+        "npm:@jsr/whitebox__core@0.4",
         "npm:@types/react-dom@19",
         "npm:@types/react@19",
         "npm:react-dom@19",
